@@ -1,2 +1,2 @@
 # av-set2
-AV set (envelope) contract
+AV set (envelope) contract based on ERC721A
