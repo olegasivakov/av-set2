@@ -20,4 +20,4 @@ AV set (envelope) contract based on ERC721A
         _mintSettings.priceOnSale = 0; // set price on deployment or with function updateContract(uint256 _pricePresale,uint256 _priceSale,uint8 _minMint,uint8 _maxMint,uint64 _maxSupply)
 
 15) (**owner**) Run function addMint(uint _quantity) to mint tokens for specified user from owner, if need.
-16) (**owner**) Run function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds) to create set
+16) (**owner**) Run function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds) to create set of existed tokens owned by user.
