@@ -3,7 +3,7 @@ AV set (envelope) contract based on ERC721A
 
 5) Set parameters
 - open AccessControl.sol and add addresses of deployed whitelists to function Whitelisted(). Remove template row from that function.
-- parameters inside constructor() at Master.sol.
+- change parameters inside constructor() at Master.sol.
 7) (**owner**) Deploy Set (Envelope) contract for SET.
 
 --> see asset2
