@@ -11,7 +11,7 @@ AV set (envelope) contract based on ERC721A
 11) (**owner**) Add CAT address using function addAssetType(address _asset) to SET contract.
 12) (**owner**) Add ROBOT address using function addAssetType(address _asset) to SET contract.
 13) (**owner**) Run function setMintingIsOnPresale() for SET contract. 'Presale' means that all mintings called from SET are available for whitelisted users.
-14) (**user1**) Run function addMint(uint _quantity) sending value = price * 2 * _quantity. See parameters inside constructor() at Master.sol (for CAT,ROBOT and SET contracts):
+14) (**user1**) Run function addMint(uint _quantity) sending **value = price * 2 * _quantity**. See parameters inside constructor() at Master.sol (for CAT,ROBOT and SET contracts):
 
         _mintSettings.maxMintPerUser = 5;
         _mintSettings.minMintPerUser = 1;
