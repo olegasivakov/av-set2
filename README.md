@@ -24,7 +24,7 @@ AV set (envelope) contract based on ERC721A
 
 15) (**owner**) Run function addMint(uint _quantity) to mint tokens for specified user from owner, if need.
 
-**Create set of tokens / transfer / split **
+**Create set of tokens / transfer / split**
 
 17) (**owner**) Run function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds) to create set of existed tokens owned by user. This function also locks tokens on the balance of user1. Until set exists, these tokens cannot be transfered to another user.
 18) (**user1**) Run function safeTransferFrom(address from,address to,uint256 tokenId) to send set of tokens from initial owner (**user1**) to another user (**user2**). When safeTransferFrom() function was executed, tokens are locked and holds on the balance of **user1**.
