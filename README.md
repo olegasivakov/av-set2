@@ -28,4 +28,4 @@ AV set (envelope) contract based on ERC721A
 
 17) (**owner**) Run function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds) to create set of existed tokens owned by user. This function also locks tokens on the balance of user1. Until set exists, these tokens cannot be transfered to another user.
 18) (**user1**) Run function safeTransferFrom(address from,address to,uint256 tokenId) to send set of tokens from initial owner (**user1**) to another user (**user2**). When safeTransferFrom() function was executed, tokens are locked and holds on the balance of **user1**.
-19) (**user2**) Run function envelopeSplit(uint256 _envelopeId). Tokens of set will be onlocked and transfered to the balance of **user2** who called envelopeSplit() for owned set.
+19) (**user2**) Run function envelopeSplit(uint256 _envelopeId). Tokens of this set will be onlocked and transfered to the balance of **user2** who called envelopeSplit() for owned set.
