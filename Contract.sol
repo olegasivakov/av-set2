@@ -87,15 +87,23 @@ contract Contract is Master, Payment, IEnvelope {
         _mintSetOfAssets(_owner, _quantity);
     }
 
-    function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds)
+    function envelopeCreate(address[] calldata _assets,uint256[] calldata _assetIds)
     external payable 
+    returns(uint256)
+    {
+        if(lackOfMoneyForConcat())
+            revert LackOfMoney();
+        else return
+            _envelopeCreate(_msgSender(),_assets, _assetIds);
+    }
+
+    function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds)
+    external 
     returns(uint256)
     {
         RootOnly();
         
-        if(lackOfMoneyForConcat())
-            revert LackOfMoney();
-        else return
+        return
             _envelopeCreate(_owner,_assets, _assetIds);
     }
 
