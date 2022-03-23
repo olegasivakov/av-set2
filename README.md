@@ -14,7 +14,7 @@ AV set (envelope) contract based on ERC721A
 
 **Mint tokens**
 
-15) (**user1**) Run function addMint(uint _quantity) sending **value = price * 2 * _quantity**. See parameters inside constructor() at Master.sol (for CAT,ROBOT and SET contracts):
+15) (**user1**) Run function addMint(address _owner,uint _quantity) sending **value = price * 2 * _quantity**. See parameters inside constructor() at Master.sol (for CAT,ROBOT and SET contracts):
 
         _mintSettings.maxMintPerUser = 5;
         _mintSettings.minMintPerUser = 1;
