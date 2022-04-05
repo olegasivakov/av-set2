@@ -4,6 +4,7 @@ AV set (envelope) contract based on ERC721A
 5) Set parameters
 - open AccessControl.sol and add addresses of deployed whitelists to function Whitelisted(). Remove template row from that function.
 - change parameters inside constructor() at Master.sol.
+- change merkle tree hash at AccessControl.sol
 7) (**owner**) Deploy Set (Envelope) contract for SET.
 
 --> see asset2
@@ -14,7 +15,7 @@ AV set (envelope) contract based on ERC721A
 
 **Mint tokens**
 
-15) (**user1**) Run function addMint(uint _quantity) sending **value = price * 2 * _quantity**. See parameters inside constructor() at Master.sol (for CAT,ROBOT and SET contracts):
+15) (**user1**) Run function addMint(uint _quantity,bytes32[] calldata _merkleProof) from any user included to whitelist on presale, or addMint(uint _quantity) from any user on sale, sending **value = price * 2 * _quantity**. See parameters inside constructor() at Master.sol (for CAT,ROBOT and SET contracts):
 
         _mintSettings.maxMintPerUser = 5;
         _mintSettings.minMintPerUser = 1;
