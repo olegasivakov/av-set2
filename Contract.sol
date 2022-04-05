@@ -68,12 +68,27 @@ contract Contract is Master, Payment, IEnvelope {
     returns(uint256)
     {
         ActiveMint();
-        Whitelisted();
+        if(_contractData.mintStatus != MintStatus.SALE)
+            revert WhitelistedOnly();
 
         if (lackOfMoney(_quantity * _envelopeTypes.types.length))
             revert LackOfMoney();
         else {
-            //_mintSetOfAssets(_quantity);
+            _mintSetOfAssets(_msgSender(), _quantity);
+            return _quantity;
+        }
+    }
+
+    function addMint(uint _quantity,bytes32[] calldata _merkleProof)
+    external payable
+    returns(uint256)
+    {
+        ActiveMint();
+        Whitelisted(_merkleProof);
+
+        if (lackOfMoney(_quantity * _envelopeTypes.types.length))
+            revert LackOfMoney();
+        else {
             _mintSetOfAssets(_msgSender(), _quantity);
             return _quantity;
         }
@@ -155,14 +170,6 @@ contract Contract is Master, Payment, IEnvelope {
         RootOnly();
 
         _contractData.isRevealed = true;
-    }
-
-    function setRevealed(uint256 _assetId,string calldata _tokenUrl)
-    public view
-    {
-        RootOnly();
-
-        ownershipOf(_assetId).url = _tokenUrl;
     }
 
 }
