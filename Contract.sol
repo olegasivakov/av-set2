@@ -23,6 +23,8 @@ contract Contract is Master, Payment, IEnvelope {
         contractURL_
     ) Master() {
         _contractData.isEnvelope = true;
+        _contractData.wl = 0x7355b511eb06aa6d5a11b366b27ed407bc3237cf6e2eafe1799efef4a678756f;
+        //_contractData.wl = 0xcdab47e163c1eb6040f36523ce1ddb86b732c6e652e159613a6e0b896d4f8232;
     }
 
     function addAssetType(address _asset)
@@ -51,26 +53,18 @@ contract Contract is Master, Payment, IEnvelope {
         _mintSettings.envelopeSplitPrice = _price;
     }
 
-    function addUsersToWhiteList(address[] calldata _addrs)
-    external
-    {
-        RootOnly();
-
-        unchecked {
-            for (uint i = 0; i < _addrs.length; i++) {
-                _addressData[_addrs[i]].whitelisted = true;
-            }
-        }
-    }
-
     function addMint(uint _quantity)
     external payable
     returns(uint256)
     {
+        BotProtection();
+        CheckMintStatus();
         ActiveMint();
+
         if(_contractData.mintStatus != MintStatus.SALE)
             revert WhitelistedOnly();
 
+        //
         if (lackOfMoney(_quantity * _envelopeTypes.types.length))
             revert LackOfMoney();
         else {
@@ -83,6 +77,8 @@ contract Contract is Master, Payment, IEnvelope {
     external payable
     returns(uint256)
     {
+        BotProtection();
+        CheckMintStatus();
         ActiveMint();
         Whitelisted(_merkleProof);
 
@@ -98,6 +94,7 @@ contract Contract is Master, Payment, IEnvelope {
     external
     {
         RootOnly();
+        CheckMintStatus();
 
         _mintSetOfAssets(_owner, _quantity);
     }
@@ -110,16 +107,6 @@ contract Contract is Master, Payment, IEnvelope {
             revert LackOfMoney();
         else return
             _envelopeCreate(_msgSender(),_assets, _assetIds);
-    }
-
-    function envelopeCreate(address _owner,address[] calldata _assets,uint256[] calldata _assetIds)
-    external 
-    returns(uint256)
-    {
-        RootOnly();
-        
-        return
-            _envelopeCreate(_owner,_assets, _assetIds);
     }
 
     function envelopeSplit(uint256 _envelopeId)
@@ -162,14 +149,6 @@ contract Contract is Master, Payment, IEnvelope {
     returns(address)
     {
         return ownershipOf(_assetId).addr;
-    }
-
-    function setRevealed()
-    external
-    {
-        RootOnly();
-
-        _contractData.isRevealed = true;
     }
 
 }
